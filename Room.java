@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.*;
 
 /**
  * Class Room - a room in an adventure game.
@@ -22,6 +23,9 @@ public class Room
     // String is the key to a room in that direction
     // east would be an exit that goes to the Room
     private HashMap<String, Room> exits;
+    private ArrayList<Item> items = new ArrayList<Item>();
+    private Player player = ;
+    private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
     /**
      * Create a room described "description". Initially, it has
@@ -29,12 +33,26 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description ) 
     {
         this.description = description;
         exits = new HashMap<>();
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
-
+    //Set Player name
+    public void setPlayerName(String name)
+    {
+        player.setName(name);
+    }
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -43,8 +61,13 @@ public class Room
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
+        
     }
-
+    //@return Player name
+    public Player playerName()
+    {
+        return player;
+    }
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -91,6 +114,29 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+    //get the item
+    public Item getItem(int index)
+    {
+       return items.get(index);
+    }
+    //add item to array list
+    public void setItem(Item newItem)
+    {
+        items.add(newItem);
+    }
+    
+    //get item descriptio in the room
+    public String getRoomItems()
+    {
+        String output="";
+      for(int i=0; i < items.size(); i++)
+        {   
+          output += items.get(i).getDescription();
+        }
+        
+        return output;
+        
     }
 }
 
